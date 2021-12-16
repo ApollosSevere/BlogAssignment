@@ -20,13 +20,13 @@ export const fetchPost = (postId) => {
   };
 };
 
-export const editPost = (postId, postObj) => {
+export const editPost = (postId, postObj, tags) => {
   return async (dispatch) => {
     try {
-      const { data: updatedPost } = await axios.put(
-        `/api/posts/${postId}`,
-        postObj
-      );
+      const { data: updatedPost } = await axios.put(`/api/posts/${postId}`, {
+        ...postObj,
+        tags,
+      });
 
       dispatch(_fetchPost(updatedPost));
     } catch (error) {
