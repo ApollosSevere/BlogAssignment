@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-function Home({ username }) {
+// Components
+import Feed from "./Feed/Feed.jsx";
+
+// Redux Functions
+import { fetchPosts } from "../../store/feed.js";
+
+function Home({ username, feed, getPosts }) {
+  useEffect =
+    (() => {
+      try {
+        getPosts();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [feed]);
+  const posts = feed.map((post) => <Feed key={post.id} info={post} />);
   return (
     <div>
       <h3>Welcome, {username}</h3>
+
+      {posts}
     </div>
   );
 }
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     username: state.auth.username,
+    feed: state.feed,
   };
 };
 
-export default connect(mapState)(Home);
+const mapDispatch = (dispatch) => {
+  return {
+    getPosts: () => dispatch(fetchPosts()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Home);
