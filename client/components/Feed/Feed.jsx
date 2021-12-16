@@ -1,12 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Feed({ info }) {
   const { title, body, author_name } = info;
-  console.log(info);
+
   return (
     <div>
-      <h1 className="f-title">{title}</h1>
+      <Link to={`/singlepost/${info.id}`}>
+        <h3 className="f-title">{title}</h3>
+      </Link>
+
       <span>{author_name}</span>
+
       <p className="f-body">{body}</p>
     </div>
   );
