@@ -12,8 +12,23 @@ const _fetchPost = (post) => {
 export const fetchPost = (postId) => {
   return async (dispatch) => {
     try {
-      const { data: postInfo } = await axios.get(`/api/post/${postId}`);
+      const { data: postInfo } = await axios.get(`/api/posts/${postId}`);
       dispatch(_fetchPost(postInfo));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const editPost = (postId, postObj) => {
+  return async (dispatch) => {
+    try {
+      const { data: updatedPost } = await axios.put(
+        `/api/posts/${postId}`,
+        postObj
+      );
+
+      dispatch(_fetchPost(updatedPost));
     } catch (error) {
       console.log(error);
     }

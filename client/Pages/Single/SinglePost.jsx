@@ -1,26 +1,28 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchPost } from "../../store/post";
 
-export const SinglePost = ({ getPost }) => {
-  const yo = useParams();
-  console.log(yo.id, useParams());
-  //   useEffect(() => {
-  //     const getData = () => {
-  //       try {
-  //         console.log("working?", postId);
-  //         getPost(postId);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     };
-  //     getData();
-  //   }, [postId]);
+export const SinglePost = ({ getPost, userId, postInfo }) => {
+  const { postId } = useParams();
+  const canEdit = userId == postInfo.userId;
+  console.log(userId, postInfo.userId);
+
+  useEffect(() => {
+    const getData = () => {
+      try {
+        getPost(postId);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, [postId]);
 
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
+        {canEdit && <Link to={`/editPost/${postId}`}>Edit Post</Link>}
         <img
           className="singlePostImg"
           src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
@@ -40,7 +42,12 @@ export const SinglePost = ({ getPost }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => {
+  return {
+    userId: state.auth.id,
+    postInfo: state.singlePost,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
