@@ -5,8 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 
 import feedReducer from "./feed";
+import postReducer from "./post";
 
-const reducer = combineReducers({ auth, feed: feedReducer });
+const reducer = combineReducers({
+  auth,
+  feed: feedReducer,
+  singlePost: postReducer,
+});
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

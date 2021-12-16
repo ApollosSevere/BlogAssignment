@@ -14,7 +14,6 @@ function Home({ username, feed, getPosts }) {
   useEffect(() => {
     const getData = async () => {
       try {
-        console.log("on");
         await getPosts();
       } catch (error) {
         console.log(error);
@@ -25,7 +24,7 @@ function Home({ username, feed, getPosts }) {
 
   return (
     <div>
-      <h3>WelcSohme, {username}</h3>
+      <h3>Welcome, {username}</h3>
       <Link to="/addpost">Add a Post!</Link>
 
       {posts}

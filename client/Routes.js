@@ -5,6 +5,7 @@ import { Login, Signup } from "./components/AuthForm/AuthForm";
 import Home from "./Pages/Home/Home";
 import { me } from "./store/auth";
 import Write from "./Pages/Write/Write.jsx";
+import SinglePost from "./Pages/Single/SinglePost.jsx";
 
 function Routes({ loadInitialData, isLoggedIn }) {
   useEffect(() => {
@@ -22,6 +23,7 @@ function Routes({ loadInitialData, isLoggedIn }) {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/addpost" component={Write} />
+          <SinglePost exact path="/singlePost/:id" component={SinglePost} />
           <Redirect to="/home" component={Home} />
         </Switch>
       ) : (
