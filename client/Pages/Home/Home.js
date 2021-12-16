@@ -9,32 +9,23 @@ import Feed from "../../components/Feed/Feed.jsx";
 import { fetchPosts } from "../../store/feed.js";
 
 function Home({ username, feed, getPosts }) {
-  console.log(feed);
+  const posts = feed.map((post) => <Feed key={post.id} info={post} />);
+
   useEffect(() => {
-    try {
-      console.log("on");
-      getPosts();
-    } catch (error) {
-      console.log(error);
-    }
+    const getData = async () => {
+      try {
+        console.log("on");
+        await getPosts();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("useEffect called");
-  //   const getData = async () => {
-  //     try {
-  //       console.log("on");
-  //       await getPosts();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getData();
-  // }, [feed]);
-  const posts = feed.map((post) => <Feed key={post.id} info={post} />);
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <h3>WelcSohme, {username}</h3>
       <Link to="/addpost">Add a Post!</Link>
 
       {posts}
