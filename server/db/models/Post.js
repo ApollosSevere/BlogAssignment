@@ -1,4 +1,5 @@
-const Sequelize = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
+
 const db = require("../db");
 
 const User = db.define("post", {
@@ -11,8 +12,14 @@ const User = db.define("post", {
     allowNull: false,
   },
   tags: {
-    type: Sequelize.ENUM,
-    values: ["Technology", "Art", "Engineering", "Math", "Entertainment"],
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    validate: {
+      isSpecificLength(value) {
+        if (value.length > 3) {
+          throw new Error("industryOfFocus must only have three items");
+        }
+      },
+    },
   },
   author_name: {
     type: Sequelize.STRING,

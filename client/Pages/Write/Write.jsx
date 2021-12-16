@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addPost } from "../../store/feed";
+import TagSelector from "../../components/utils/TagSelector.jsx";
 
 export const Write = ({ user_Id, submitPost, username }) => {
+  const [optionSelected, setSelected] = useState(null);
   const [formData, setFormData] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
-      console.log(username);
-      submitPost(formData, user_Id, username);
+      const tagsPicked = optionSelected.map((tag) => tag.value);
+      submitPost(formData, tagsPicked, user_Id, username);
     } catch (error) {
       console.log(error);
     }
@@ -20,6 +23,7 @@ export const Write = ({ user_Id, submitPost, username }) => {
 
   return (
     <div className="write">
+      <TagSelector optionSelected={optionSelected} setSelected={setSelected} />
       <img
         className="writeImg"
         src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
@@ -62,8 +66,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitPost: (formObj, userId, username) =>
-      dispatch(addPost(formObj, userId, username)),
+    submitPost: (formObj, tagsSelected, userId, username) =>
+      dispatch(addPost(formObj, tagsSelected, userId, username)),
   };
 };
 

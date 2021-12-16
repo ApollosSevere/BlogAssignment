@@ -23,12 +23,13 @@ export const fetchPosts = () => {
   };
 };
 
-export const addPost = (formObj, userId, author_name) => {
+export const addPost = (formObj, tagsSelected, userId, author_name) => {
   return async (dispatch) => {
     try {
-      console.log(author_name, "sjdljsfdkfj");
+      console.log(tagsSelected, "sjdljsfdkfj");
       await axios.post("/api/posts/addpost", {
         ...formObj,
+        tags: tagsSelected,
         userId,
         author_name,
       });
