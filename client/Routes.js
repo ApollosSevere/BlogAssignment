@@ -4,6 +4,7 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm/AuthForm";
 import Home from "./Pages/Home/Home";
 import { me } from "./store/auth";
+import Write from "./Pages/Write/Write.jsx";
 
 function Routes({ loadInitialData, isLoggedIn }) {
   useEffect =
@@ -21,7 +22,8 @@ function Routes({ loadInitialData, isLoggedIn }) {
       {isLoggedIn ? (
         <Switch>
           <Route path="/home" component={Home} />
-          <Redirect to="/home" />
+          <Route path="/addpost" component={Write} />
+          <Redirect to="/home" component={Home} />
         </Switch>
       ) : (
         <Switch>

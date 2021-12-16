@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Components
 import Feed from "../../components/Feed/Feed.jsx";
@@ -8,19 +9,35 @@ import Feed from "../../components/Feed/Feed.jsx";
 import { fetchPosts } from "../../store/feed.js";
 
 function Home({ username, feed, getPosts }) {
-  useEffect =
-    (() => {
+  console.log(feed);
+  // useEffect =
+  //   (() => {
+  //     try {
+  //       console.log("on");
+  //       getPosts();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   },
+  //   [feed]);
+
+  React.useEffect(() => {
+    console.log("useEffect called");
+    const getData = async () => {
       try {
-        getPosts();
+        console.log("on");
+        await getPosts();
       } catch (error) {
         console.log(error);
       }
-    },
-    [feed]);
+    };
+    getData();
+  }, [feed]);
   const posts = feed.map((post) => <Feed key={post.id} info={post} />);
   return (
     <div>
       <h3>Welcome, {username}</h3>
+      <Link to="/addpost">Add a Post!</Link>
 
       {posts}
     </div>
