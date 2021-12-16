@@ -14,9 +14,18 @@ router.get("/", async (req, res, next) => {
 
 router.post("/addpost", async (req, res, next) => {
   try {
-    console.log(req.body, "<--------------");
     await Post.create(req.body);
     res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/:postId", async (req, res, next) => {
+  try {
+    const post = await Post.findByPk(req.params.postId);
+    const updatedPost = await post.update(req.body);
+    res.sendStatus(200).json(updatedPost);
   } catch (error) {
     next(error);
   }
