@@ -6,6 +6,7 @@ import Home from "./Pages/Home/Home";
 import { me } from "./store/auth";
 import Write from "./Pages/Write/Write.jsx";
 import SinglePost from "./Pages/Single/SinglePost.jsx";
+import EditPost from "./Pages/Edit/EditPost.jsx";
 
 function Routes({ loadInitialData, isLoggedIn }) {
   useEffect(() => {
@@ -23,7 +24,8 @@ function Routes({ loadInitialData, isLoggedIn }) {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/addpost" component={Write} />
-          <SinglePost exact path="/singlePost/:id" component={SinglePost} />
+          <Route path="/singlePost/:postId" component={SinglePost} />
+          <Route path="/editPost/:postId" component={EditPost} />
           <Redirect to="/home" component={Home} />
         </Switch>
       ) : (

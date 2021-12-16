@@ -12,9 +12,9 @@ function Home({ username, feed, getPosts }) {
   const posts = feed.map((post) => <Feed key={post.id} info={post} />);
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = () => {
       try {
-        await getPosts();
+        getPosts();
       } catch (error) {
         console.log(error);
       }
