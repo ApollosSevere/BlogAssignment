@@ -2,9 +2,14 @@
 
 const db = require("./db");
 
+// Models/Tables
+const User = require("./models/User");
+
 //associations
 
 module.exports = {
   db,
-  models: {},
+  models: {
+    User,
+  },
 };
