@@ -3,30 +3,47 @@ import { connect } from "react-redux";
 import { editPost } from "../../store/post";
 import { fetchPost } from "../../store/post";
 import { useParams } from "react-router-dom";
+import TagSelector from "../../components/utils/TagSelector.jsx";
 
 export const EditPost = ({ getPost, updatePost, postDetail }) => {
+  const [optionSelected, setSelected] = useState(null);
   const [formData, setFormData] = useState(postDetail);
   const { postId } = useParams();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    try {
-      updatePost(formData.id, formData);
-    } catch (error) {
-      console.log(error);
+  const formatPrevTags = () => {
+    console.log(Object.keys(formData).length > 0, "<---------");
+    let result = null;
+    if (Object.keys(formData).length > 0 && postDetail) {
+      result = formData.tags.map((tag) => ({
+        value: tag,
+        label: tag,
+      }));
     }
+    return result;
   };
 
   const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    try {
+      const tagsPicked = optionSelected.map((tag) => tag.value);
+      updatePost(formData.id, formData, tagsPicked);
+      history.back();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const updateFormData = () => {
       setFormData(postDetail);
+      setSelected(formatPrevTags());
     };
     updateFormData();
-  }, [postDetail]);
+  }, [postDetail, formData]);
 
   useEffect(() => {
     const getData = () => {
@@ -38,6 +55,7 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
     };
     getData();
     setFormData(postDetail);
+    setSelected(formatPrevTags());
   }, []);
 
   return (
@@ -45,6 +63,10 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
       {console.log(formData)}
       {formData && (
         <div>
+          <TagSelector
+            optionSelected={optionSelected}
+            setSelected={setSelected}
+          />
           <img
             className="writeImg"
             src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
@@ -91,7 +113,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPost: (postId) => dispatch(fetchPost(postId)),
-    updatePost: (postId, postObj) => dispatch(editPost(postId, postObj)),
+    updatePost: (postId, postObj, tagsSelected) =>
+      dispatch(editPost(postId, postObj, tagsSelected)),
   };
 };
 

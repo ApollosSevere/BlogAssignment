@@ -25,7 +25,7 @@ router.put("/:postId", async (req, res, next) => {
   try {
     const post = await Post.findByPk(req.params.postId);
     const updatedPost = await post.update(req.body);
-    res.sendStatus(200).json(updatedPost);
+    res.json(updatedPost);
   } catch (error) {
     next(error);
   }
@@ -35,7 +35,7 @@ router.get("/:postId", async (req, res, next) => {
   try {
     const id = req.params.postId;
     const result = await Post.findByPk(id);
-    res.status(200).json(result);
+    res.json(result);
   } catch (error) {
     next(error);
   }

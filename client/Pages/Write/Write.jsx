@@ -12,6 +12,7 @@ export const Write = ({ user_Id, submitPost, username }) => {
     try {
       const tagsPicked = optionSelected.map((tag) => tag.value);
       submitPost(formData, tagsPicked, user_Id, username);
+      history.back();
     } catch (error) {
       console.log(error);
     }
