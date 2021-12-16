@@ -10,29 +10,27 @@ import { fetchPosts } from "../../store/feed.js";
 
 function Home({ username, feed, getPosts }) {
   console.log(feed);
-  // useEffect =
-  //   (() => {
+  useEffect(() => {
+    try {
+      console.log("on");
+      getPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("useEffect called");
+  //   const getData = async () => {
   //     try {
   //       console.log("on");
-  //       getPosts();
+  //       await getPosts();
   //     } catch (error) {
   //       console.log(error);
   //     }
-  //   },
-  //   [feed]);
-
-  React.useEffect(() => {
-    console.log("useEffect called");
-    const getData = async () => {
-      try {
-        console.log("on");
-        await getPosts();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, [feed]);
+  //   };
+  //   getData();
+  // }, [feed]);
   const posts = feed.map((post) => <Feed key={post.id} info={post} />);
   return (
     <div>

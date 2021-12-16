@@ -7,15 +7,14 @@ import { me } from "./store/auth";
 import Write from "./Pages/Write/Write.jsx";
 
 function Routes({ loadInitialData, isLoggedIn }) {
-  useEffect =
-    (() => {
-      try {
-        loadInitialData();
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    []);
+  useEffect(() => {
+    try {
+      console.log("on me!!");
+      loadInitialData();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <div>
