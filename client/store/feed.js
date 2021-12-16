@@ -23,6 +23,22 @@ export const fetchPosts = () => {
   };
 };
 
+export const addPost = (formObj, userId, author_name) => {
+  return async (dispatch) => {
+    try {
+      console.log(author_name, "sjdljsfdkfj");
+      await axios.post("/api/posts/addpost", {
+        ...formObj,
+        userId,
+        author_name,
+      });
+      dispatch(fetchPosts());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 // REDUCER
 export default function feedReducer(state = [], action) {
   switch (action.type) {

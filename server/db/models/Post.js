@@ -14,8 +14,8 @@ const User = db.define("post", {
     type: Sequelize.ENUM,
     values: ["Technology", "Art", "Engineering", "Math", "Entertainment"],
   },
-  edit_date: {
-    type: Sequelize.DATE,
+  author_name: {
+    type: Sequelize.STRING,
   },
 });
 
