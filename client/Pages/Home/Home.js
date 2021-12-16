@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 // Components
-import Feed from "./Feed/Feed.jsx";
+import Feed from "../../components/Feed/Feed.jsx";
 
 // Redux Functions
 import { fetchPosts } from "../../store/feed.js";

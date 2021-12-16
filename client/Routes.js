@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm/AuthForm";
-import Home from "./components/Home/Home";
+import Home from "./Pages/Home/Home";
 import { me } from "./store/auth";
 
 function Routes({ loadInitialData, isLoggedIn }) {
-  // const { isLoggedIn } = this.props;
   useEffect =
     (() => {
       try {
