@@ -3,14 +3,22 @@ import { Link } from "react-router-dom";
 import "./feed.css";
 
 function Feed({ info }) {
-  const { title, body, author_name, createdAt, img } = info;
+  const { title, body, author_name, createdAt, img, tags } = info;
+  const date = new Date(createdAt).toLocaleDateString("en-US");
+
+  const time = new Date(createdAt).toLocaleTimeString("en-US");
 
   return (
     <div className="post">
       <img className="postImg" src={img} />
       <div className="postInfo">
-        <div className="postCats">
-          <span className="postCat">
+        <div style={{ display: "flex" }} className="postCats">
+          {tags.map((tag) => (
+            <span className="postCat">
+              <p className="link">{tag}</p>
+            </span>
+          ))}
+          {/* <span className="postCat">
             <Link className="link" to="/posts?cat=Music">
               Music
             </Link>
@@ -19,7 +27,7 @@ function Feed({ info }) {
             <Link className="link" to="/posts?cat=Music">
               Life
             </Link>
-          </span>
+          </span> */}
         </div>
         <span className="postTitle">
           <Link to={`/singlepost/${info.id}`} className="link">
@@ -27,7 +35,12 @@ function Feed({ info }) {
           </Link>
         </span>
         <hr />
-        <span className="postDate">{createdAt}</span>
+        <span className="postDate">
+          {date}{" "}
+          <span style={{ fontSize: "10px" }} className="postDate">
+            {time}
+          </span>
+        </span>
       </div>
       <p className="postDesc">{body}</p>
     </div>
