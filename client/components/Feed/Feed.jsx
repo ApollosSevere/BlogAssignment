@@ -10,7 +10,10 @@ function Feed({ info }) {
 
   return (
     <div className="post">
-      <img className="postImg" src={img} />
+      <Link to={`/singlepost/${info.id}`} className="link">
+        <img className="postImg" src={img} />
+      </Link>
+
       <div className="postInfo">
         <div style={{ display: "flex" }} className="postCats">
           {tags.map((tag) => (

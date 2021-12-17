@@ -8,9 +8,7 @@ function Sidebar({ feed, setFilteredPost }) {
   const [category, setCategory] = useState("");
 
   const filterPost = (cat) => {
-    return category == "All"
-      ? feed
-      : feed.filter((post) => post.tags.includes(cat));
+    return cat == "All" ? feed : feed.filter((post) => post.tags.includes(cat));
   };
 
   const handleClick = (cat) => {

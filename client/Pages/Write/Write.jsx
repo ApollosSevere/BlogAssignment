@@ -11,7 +11,7 @@ const img = `https://picsum.photos/200/300?random=${Math.floor(
 )}`;
 
 export const Write = ({ user_Id, submitPost, username }) => {
-  const [optionSelected, setSelected] = useState(null);
+  const [optionSelected, setSelected] = useState([]);
   const [formData, setFormData] = useState();
   const [posted, setPosted] = useState(false);
 
@@ -40,6 +40,7 @@ export const Write = ({ user_Id, submitPost, username }) => {
           <TagSelector
             optionSelected={optionSelected}
             setSelected={setSelected}
+            canAdd={optionSelected.length >= 3}
           />
           <form onSubmit={(event) => handleSubmit(event)} className="writeForm">
             <div className="writeFormGroup">

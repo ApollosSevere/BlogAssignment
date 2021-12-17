@@ -25,7 +25,7 @@ const Option = (props) => {
   );
 };
 
-function TagSelector({ optionSelected, setSelected }) {
+function TagSelector({ optionSelected, setSelected, canAdd }) {
   const handleChange = (selected) => {
     setSelected(selected);
   };
@@ -47,6 +47,7 @@ function TagSelector({ optionSelected, setSelected }) {
             Option,
           }}
           onChange={handleChange}
+          isOptionDisabled={() => canAdd}
           allowSelectAll={true}
           value={optionSelected}
         />
