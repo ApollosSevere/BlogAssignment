@@ -24,6 +24,9 @@ const User = db.define("post", {
   author_name: {
     type: Sequelize.STRING,
   },
+  img: {
+    type: Sequelize.STRING,
+  },
 });
 
 module.exports = User;

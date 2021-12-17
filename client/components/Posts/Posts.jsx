@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import "./home.css";
-import Posts from "../../components/Posts/Posts.jsx";
+import "./posts.css";
 
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 
@@ -13,10 +12,9 @@ import Header from "../../components/Header/Header.jsx";
 // Redux Functions
 import { fetchPosts } from "../../store/feed.js";
 
-function Home({ username, feed, getPosts }) {
-  // const posts = feed.map((post) => <Feed key={post.id} info={post} />);
+function Posts({ username, feed, getPosts }) {
+  const posts = feed.map((post) => <Feed key={post.id} info={post} />);
 
-  // Make sure info is populated
   useEffect(() => {
     const getData = () => {
       try {
@@ -28,22 +26,13 @@ function Home({ username, feed, getPosts }) {
     getData();
   }, []);
 
-  return (
-    <>
-      <Header />
-      <div className="home">
-        <Sidebar />
-        {/* <div className="posts">{posts}</div> */}
-        <Posts />
-      </div>
-    </>
-  );
+  return <div className="posts">{posts}</div>;
 }
 
 const mapState = (state) => {
   return {
     username: state.auth.username,
-    feed: state.feed,
+    feed: state.feed.filteredPost,
   };
 };
 
@@ -53,4 +42,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState, mapDispatch)(Home);
+export default connect(mapState, mapDispatch)(Posts);

@@ -63,14 +63,14 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
       {console.log(formData)}
       {formData && (
         <div>
-          <TagSelector
-            optionSelected={optionSelected}
-            setSelected={setSelected}
-          />
           <img
             className="writeImg"
             src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
             alt=""
+          />
+          <TagSelector
+            optionSelected={optionSelected}
+            setSelected={setSelected}
           />
           <form onSubmit={(event) => handleSubmit(event)} className="writeForm">
             <div className="writeFormGroup">

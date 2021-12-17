@@ -2,17 +2,25 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addPost } from "../../store/feed";
 import TagSelector from "../../components/utils/TagSelector.jsx";
+import { Redirect } from "react-router-dom";
+
+import "./write.css";
+
+const img = `https://picsum.photos/200/300?random=${Math.floor(
+  Math.random() * 100000
+)}`;
 
 export const Write = ({ user_Id, submitPost, username }) => {
   const [optionSelected, setSelected] = useState(null);
   const [formData, setFormData] = useState();
+  const [posted, setPosted] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
       const tagsPicked = optionSelected.map((tag) => tag.value);
-      submitPost(formData, tagsPicked, user_Id, username);
-      history.back();
+      submitPost({ ...formData, img }, tagsPicked, user_Id, username);
+      setPosted(true);
     } catch (error) {
       console.log(error);
     }
@@ -23,38 +31,43 @@ export const Write = ({ user_Id, submitPost, username }) => {
   };
 
   return (
-    <div className="write">
-      <TagSelector optionSelected={optionSelected} setSelected={setSelected} />
-      <img
-        className="writeImg"
-        src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        alt=""
-      />
-      <form onSubmit={(event) => handleSubmit(event)} className="writeForm">
-        <div className="writeFormGroup">
-          <input
-            className="writeInput"
-            placeholder="Title"
-            type="text"
-            autoFocus={true}
-            onChange={handleChange}
-            name="title"
+    <>
+      {posted ? (
+        <Redirect to="/home" />
+      ) : (
+        <div className="write">
+          <img className="writeImg" src={img} alt="" />
+          <TagSelector
+            optionSelected={optionSelected}
+            setSelected={setSelected}
           />
+          <form onSubmit={(event) => handleSubmit(event)} className="writeForm">
+            <div className="writeFormGroup">
+              <input
+                className="writeInput"
+                placeholder="Title"
+                type="text"
+                autoFocus={true}
+                onChange={handleChange}
+                name="title"
+              />
+            </div>
+            <div className="writeFormGroup">
+              <textarea
+                className="writeInput writeText"
+                placeholder="Tell your story..."
+                type="text"
+                onChange={handleChange}
+                name="body"
+              />
+            </div>
+            <button className="writeSubmit" type="submit">
+              Publish
+            </button>
+          </form>
         </div>
-        <div className="writeFormGroup">
-          <textarea
-            className="writeInput writeText"
-            placeholder="Tell your story..."
-            type="text"
-            onChange={handleChange}
-            name="body"
-          />
-        </div>
-        <button className="writeSubmit" type="submit">
-          Publish
-        </button>
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
