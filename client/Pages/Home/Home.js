@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import "./home.css";
+
+import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 
 // Components
 import Feed from "../../components/Feed/Feed.jsx";
+import Header from "../../components/Header/Header.jsx";
 
 // Redux Functions
 import { fetchPosts } from "../../store/feed.js";
@@ -24,10 +28,11 @@ function Home({ username, feed, getPosts }) {
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
-      <Link to="/addpost">Add a Post!</Link>
+      <Header />
 
-      {posts}
+      <div className="posts">{posts}</div>
+
+      <Sidebar />
     </div>
   );
 }

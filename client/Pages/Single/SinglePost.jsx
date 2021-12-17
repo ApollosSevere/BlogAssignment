@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchPost } from "../../store/post";
+import "./singlePost.css";
 
 export const SinglePost = ({ getPost, userId, postInfo }) => {
   const { postId } = useParams();
@@ -22,21 +23,37 @@ export const SinglePost = ({ getPost, userId, postInfo }) => {
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        {canEdit && <Link to={`/editPost/${postId}`}>Edit Post</Link>}
         <img
           className="singlePostImg"
           src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
           alt=""
         />
         <h1 className="singlePostTitle">
-          Lorem ipsum dolor
+          {postInfo.title}
           <div className="singlePostEdit">
-            <i className="singlePostIcon far fa-edit"></i>
+            {canEdit && (
+              <Link to={`/editPost/${postId}`}>
+                <i className="singlePostIcon far fa-edit"></i>EDIT
+              </Link>
+            )}
+
             <i className="singlePostIcon far fa-trash-alt"></i>
           </div>
         </h1>
-        <div className="singlePostInfo"></div>
-        <p className="singlePostDesc">{}</p>
+        <div className="singlePostInfo">
+          <span>
+            Author:
+            <b className="singlePostAuthor">
+              <Link className="link" to="/posts?username=Safak">
+                {postInfo.author_name}
+              </Link>
+            </b>
+          </span>
+          <span>
+            {JSON.stringify(new Date(postInfo.createdAt).toLocaleDateString())}
+          </span>
+        </div>
+        <p className="singlePostDesc">{postInfo.body}</p>
       </div>
     </div>
   );
