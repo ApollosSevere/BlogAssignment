@@ -4,7 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { fetchPost } from "../../store/post";
 import "./singlePost.css";
 
-export const SinglePost = ({ getPost, userId, postInfo }) => {
+import { deletePost } from "../../store/feed";
+
+export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
   const { postId } = useParams();
   const canEdit = userId == postInfo.userId;
 
@@ -18,6 +20,15 @@ export const SinglePost = ({ getPost, userId, postInfo }) => {
     };
     getData();
   }, [postId]);
+
+  const handleClick = () => {
+    try {
+      removePost(postId);
+      history.back();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="singlePost">
@@ -33,6 +44,8 @@ export const SinglePost = ({ getPost, userId, postInfo }) => {
                 </Link>
 
                 <i className="singlePostIcon far fa-trash-alt"></i>
+
+                <button onClick={() => handleClick()}>Delete</button>
               </>
             )}
           </div>
@@ -66,6 +79,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPost: (postId) => dispatch(fetchPost(postId)),
+    removePost: (postId) => dispatch(deletePost(postId)),
   };
 };
 

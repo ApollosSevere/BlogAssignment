@@ -58,6 +58,18 @@ export const updateFilteredPost = (data) => {
   };
 };
 
+export const deletePost = (postId) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`/api/posts/${postId}`, { postId });
+
+      dispatch(fetchPosts());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 // REDUCER
 export default function feedReducer(state = initialState, action) {
   switch (action.type) {

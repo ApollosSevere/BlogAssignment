@@ -41,4 +41,15 @@ router.get("/:postId", async (req, res, next) => {
   }
 });
 
+router.delete("/:postId", async (req, res, next) => {
+  try {
+    const id = req.params.postId;
+    const post = await Post.findByPk(id);
+    await post.destroy();
+    res.sendStatus(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

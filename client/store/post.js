@@ -9,6 +9,7 @@ const _fetchPost = (post) => {
   };
 };
 
+// Get
 export const fetchPost = (postId) => {
   return async (dispatch) => {
     try {
@@ -20,6 +21,7 @@ export const fetchPost = (postId) => {
   };
 };
 
+// Update
 export const editPost = (postId, postObj, tags) => {
   return async (dispatch) => {
     try {
