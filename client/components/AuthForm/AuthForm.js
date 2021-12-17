@@ -2,10 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../../store/auth";
 
-function AuthForm({ name, displayName, handleSubmit, error }) {
+import "./authForm.css";
+
+function LoginForm({ name, displayName, handleSubmit, error }) {
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <>
+      {/* <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">
             <small>Username</small>
@@ -22,8 +24,84 @@ function AuthForm({ name, displayName, handleSubmit, error }) {
           <button type="submit">{displayName}</button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+      </form> */}
+
+      <div className="login">
+        <span className="loginTitle">Login</span>
+        <form onSubmit={handleSubmit} className="registerForm" name={name}>
+          <label>Username</label>
+          <input
+            className="loginInput"
+            type="text"
+            placeholder="Enter your email..."
+            name="username"
+          />
+          <label>Password</label>
+          <input
+            className="loginInput"
+            type="password"
+            placeholder="Enter your password..."
+            name="password"
+          />
+          <button className="loginButton">Login</button>
+        </form>
+        <button type="submit" className="loginRegisterButton">
+          Register
+        </button>
+      </div>
+      {error && error.response && <div> {error.response.data} </div>}
+    </>
+  );
+}
+
+function SignupForm({ name, displayName, handleSubmit, error }) {
+  return (
+    <>
+      {/* <form onSubmit={handleSubmit} name={name}>
+        <div>
+          <label htmlFor="username">
+            <small>Username</small>
+          </label>
+          <input name="username" type="text" />
+        </div>
+        <div>
+          <label htmlFor="password">
+            <small>Password</small>
+          </label>
+          <input name="password" type="password" />
+        </div>
+        <div>
+          <button type="submit">{displayName}</button>
+        </div>
+        {error && error.response && <div> {error.response.data} </div>}
+      </form> */}
+
+      <div className="register">
+        <span className="registerTitle">Register</span>
+        <form name={name} onSubmit={handleSubmit} className="registerForm">
+          <label>Username</label>
+          <input
+            name="username"
+            className="registerInput"
+            type="text"
+            placeholder="Enter your username..."
+          />
+
+          <label>Password</label>
+          <input
+            name="password"
+            className="registerInput"
+            type="password"
+            placeholder="Enter your password..."
+          />
+          <button type="submit" className="registerButton">
+            Register
+          </button>
+        </form>
+        <button className="registerLoginButton">Login</button>
+      </div>
+      {error && error.response && <div> {error.response.data} </div>}
+    </>
   );
 }
 
@@ -62,5 +140,5 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm);
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
+export const Login = connect(mapLogin, mapDispatch)(LoginForm);
+export const Signup = connect(mapSignup, mapDispatch)(SignupForm);

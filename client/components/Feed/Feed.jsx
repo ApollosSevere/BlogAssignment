@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import "./feed.css";
 
 function Feed({ info }) {
-  const { title, body, author_name, createdAt } = info;
+  const { title, body, author_name, createdAt, img } = info;
 
   return (
     <div className="post">
-      <img className="postImg" src={"https://picsum.photos/200/300"} alt="" />
+      <img className="postImg" src={img} />
       <div className="postInfo">
         <div className="postCats">
           <span className="postCat">

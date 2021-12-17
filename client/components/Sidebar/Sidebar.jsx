@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
+import { connect } from "react-redux";
+import { updateFilteredPost } from "../../store/feed";
 
-export default function Sidebar() {
+function Sidebar({ feed, setFilteredPost }) {
+  const [category, setCategory] = useState("");
+
+  const filterPost = (cat) => {
+    return category == "All"
+      ? feed
+      : feed.filter((post) => post.tags.includes(cat));
+  };
+
+  const handleClick = (cat) => {
+    setCategory(cat);
+    setFilteredPost(filterPost(cat));
+  };
+
+  useEffect(() => {
+    const setData = () => {
+      try {
+        setFilteredPost(feed);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    setData();
+  }, [feed]);
+
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -18,36 +44,62 @@ export default function Sidebar() {
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
+
+        {/* <UI setCategory={setCategory} state={state} /> */}
+
         <ul className="sidebarList">
           <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Life">
-              Life
-            </Link>
+            <button
+              className={category == "All" ? "link active" : "link"}
+              onClick={() => handleClick("All")}
+            >
+              All
+            </button>
           </li>
+
           <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Music">
-              Music
-            </Link>
+            <button
+              className={category == "Technology" ? "link active" : "link"}
+              onClick={() => handleClick("Technology")}
+            >
+              Technology
+            </button>
           </li>
+
           <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Sport">
-              Sport
-            </Link>
+            <button
+              className={category == "Art" ? "link active" : "link"}
+              onClick={() => handleClick("Art")}
+            >
+              Art
+            </button>
           </li>
+
           <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Style">
-              Style
-            </Link>
+            <button
+              className={category == "Engineering" ? "link active" : "link"}
+              onClick={() => handleClick("Engineering")}
+            >
+              Engineering
+            </button>
           </li>
+
           <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Tech">
-              Tech
-            </Link>
+            <button
+              className={category == "Math" ? "link active" : "link"}
+              onClick={() => handleClick("Math")}
+            >
+              Math
+            </button>
           </li>
+
           <li className="sidebarListItem">
-            <Link className="link" to="/posts?cat=Cinema">
-              Cinema
-            </Link>
+            <button
+              className={category == "Entertainment" ? "link active" : "link"}
+              onClick={() => handleClick("Entertainment")}
+            >
+              Entertainment
+            </button>
           </li>
         </ul>
       </div>
@@ -63,3 +115,19 @@ export default function Sidebar() {
     </div>
   );
 }
+
+const mapState = (state) => {
+  return {
+    username: state.auth.username,
+    feed: state.feed.allPost,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    getPosts: () => dispatch(fetchPosts()),
+    setFilteredPost: (data) => dispatch(updateFilteredPost(data)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Sidebar);

@@ -31,25 +31,27 @@ function TagSelector({ optionSelected, setSelected }) {
   };
 
   return (
-    <span
-      className="d-inline-block"
-      data-toggle="popover"
-      data-trigger="focus"
-      data-content="Please select account(s)"
-    >
-      <ReactSelect
-        options={tagOptions}
-        isMulti
-        closeMenuOnSelect={false}
-        hideSelectedOptions={false}
-        components={{
-          Option,
-        }}
-        onChange={handleChange}
-        allowSelectAll={true}
-        value={optionSelected}
-      />
-    </span>
+    <div className="selector" style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <span
+        className="d-inline-block"
+        data-toggle="popover"
+        data-trigger="focus"
+        data-content="Please select account(s)"
+      >
+        <ReactSelect
+          options={tagOptions}
+          isMulti
+          closeMenuOnSelect={false}
+          hideSelectedOptions={false}
+          components={{
+            Option,
+          }}
+          onChange={handleChange}
+          allowSelectAll={true}
+          value={optionSelected}
+        />
+      </span>
+    </div>
   );
 }
 

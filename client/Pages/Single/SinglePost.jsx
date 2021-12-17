@@ -7,7 +7,6 @@ import "./singlePost.css";
 export const SinglePost = ({ getPost, userId, postInfo }) => {
   const { postId } = useParams();
   const canEdit = userId == postInfo.userId;
-  console.log(userId, postInfo.userId);
 
   useEffect(() => {
     const getData = () => {
@@ -23,21 +22,19 @@ export const SinglePost = ({ getPost, userId, postInfo }) => {
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        <img
-          className="singlePostImg"
-          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-          alt=""
-        />
+        <img className="singlePostImg" src={postInfo.img} alt="" />
         <h1 className="singlePostTitle">
           {postInfo.title}
           <div className="singlePostEdit">
             {canEdit && (
-              <Link to={`/editPost/${postId}`}>
-                <i className="singlePostIcon far fa-edit"></i>EDIT
-              </Link>
-            )}
+              <>
+                <Link to={`/editPost/${postId}`}>
+                  <i className="singlePostIcon far fa-edit"></i>EDIT
+                </Link>
 
-            <i className="singlePostIcon far fa-trash-alt"></i>
+                <i className="singlePostIcon far fa-trash-alt"></i>
+              </>
+            )}
           </div>
         </h1>
         <div className="singlePostInfo">
