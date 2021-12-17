@@ -30,9 +30,10 @@ function Sidebar({ feed, setFilteredPost }) {
   return (
     <div className="sidebar">
       <div className="sidebarItem">
-        <span className="sidebarTitle">ABOUT ME</span>
+        <span className="sidebarTitle">Share Whats on your mind ...</span>
         <img
-          src="https://themegoods-cdn-pzbycso8wng.stackpathdns.com/grandblog/demo/wp-content/uploads/2015/11/aboutme.jpg"
+          style={{ objectFit: "cover" }}
+          src="https://images.ctfassets.net/lzny33ho1g45/best-blog-sites-p-img/ccef14ee4220a6cabe77775aace84424/file.png?w=1520&fm=jpg&q=30&fit=thumb&h=760"
           alt=""
         />
         <p>

@@ -10,6 +10,16 @@ function Feed({ info }) {
 
   return (
     <div className="post">
+      <span
+        style={{ fontSize: "15px", marginBottom: "10px" }}
+        className="postDate"
+      >
+        {date}{" "}
+        <span style={{ fontSize: "12px" }} className="postDate">
+          {time}
+        </span>
+      </span>
+
       <Link to={`/singlepost/${info.id}`} className="link">
         <img className="postImg" src={img} />
       </Link>
@@ -17,20 +27,10 @@ function Feed({ info }) {
       <div className="postInfo">
         <div style={{ display: "flex" }} className="postCats">
           {tags.map((tag) => (
-            <span className="postCat">
+            <span style={{ fontSize: "14px" }} className="postCat">
               <p className="link">{tag}</p>
             </span>
           ))}
-          {/* <span className="postCat">
-            <Link className="link" to="/posts?cat=Music">
-              Music
-            </Link>
-          </span>
-          <span className="postCat">
-            <Link className="link" to="/posts?cat=Music">
-              Life
-            </Link>
-          </span> */}
         </div>
         <span className="postTitle">
           <Link to={`/singlepost/${info.id}`} className="link">
@@ -38,12 +38,6 @@ function Feed({ info }) {
           </Link>
         </span>
         <hr />
-        <span className="postDate">
-          {date}{" "}
-          <span style={{ fontSize: "10px" }} className="postDate">
-            {time}
-          </span>
-        </span>
       </div>
       <p className="postDesc">{body}</p>
     </div>

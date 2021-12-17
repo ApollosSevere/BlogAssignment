@@ -3,7 +3,9 @@ const {
   models: { Post },
 } = require("../db");
 
-router.get("/", async (req, res, next) => {
+const { requireToken } = require("./middleware");
+
+router.get("/", requireToken, async (req, res, next) => {
   try {
     const posts = await Post.findAll();
     res.status(200).json(posts);

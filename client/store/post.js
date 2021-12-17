@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const TOKEN = "token";
+const token = window.localStorage.getItem(TOKEN);
+
 const GET_POST = "GET_POST";
 
 const _fetchPost = (post) => {
@@ -13,7 +16,11 @@ const _fetchPost = (post) => {
 export const fetchPost = (postId) => {
   return async (dispatch) => {
     try {
-      const { data: postInfo } = await axios.get(`/api/posts/${postId}`);
+      const { data: postInfo } = await axios.get(`/api/posts/${postId}`, {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(_fetchPost(postInfo));
     } catch (error) {
       console.log(error);
@@ -26,6 +33,9 @@ export const editPost = (postId, postObj, tags) => {
   return async (dispatch) => {
     try {
       const { data: updatedPost } = await axios.put(`/api/posts/${postId}`, {
+        headers: {
+          authorization: token,
+        },
         ...postObj,
         tags,
       });

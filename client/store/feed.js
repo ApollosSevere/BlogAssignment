@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const TOKEN = "token";
+const token = window.localStorage.getItem(TOKEN);
+
 const initialState = {
   allPost: [],
   filteredPost: [],
@@ -28,7 +31,11 @@ const _setFiltered = (posts) => {
 export const fetchPosts = () => {
   return async (dispatch) => {
     try {
-      const { data: posts } = await axios.get("/api/posts");
+      const { data: posts } = await axios.get("/api/posts", {
+        headers: {
+          authorization: token,
+        },
+      });
       dispatch(_updateFeed(posts));
     } catch (error) {
       console.log(error);
@@ -40,6 +47,9 @@ export const addPost = (formObj, tagsSelected, userId, author_name) => {
   return async (dispatch) => {
     try {
       await axios.post("/api/posts/addpost", {
+        headers: {
+          authorization: token,
+        },
         ...formObj,
         tags: tagsSelected,
         userId,
@@ -61,7 +71,12 @@ export const updateFilteredPost = (data) => {
 export const deletePost = (postId) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/posts/${postId}`, { postId });
+      await axios.delete(`/api/posts/${postId}`, {
+        headers: {
+          authorization: token,
+        },
+        postId,
+      });
 
       dispatch(fetchPosts());
     } catch (error) {
