@@ -9,7 +9,7 @@ import "./write.css";
 const img = `https://picsum.photos/200/300?random=${Math.floor(
   Math.random() * 100000
 )}`;
-
+//
 export const Write = ({ user_Id, submitPost, username }) => {
   const [optionSelected, setSelected] = useState([]);
   const [formData, setFormData] = useState();
