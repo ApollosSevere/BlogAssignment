@@ -8,7 +8,7 @@ const User = db.define("post", {
     allowNull: false,
   },
   body: {
-    type: Sequelize.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   tags: {

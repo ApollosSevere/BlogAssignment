@@ -6,13 +6,13 @@ import { useParams } from "react-router-dom";
 import TagSelector from "../../components/utils/TagSelector.jsx";
 
 export const EditPost = ({ getPost, updatePost, postDetail }) => {
-  const [optionSelected, setSelected] = useState(null);
+  const [optionSelected, setSelected] = useState([]);
   const [formData, setFormData] = useState(postDetail);
   const { postId } = useParams();
 
   const formatPrevTags = () => {
-    console.log(Object.keys(formData).length > 0, "<---------");
-    let result = null;
+    // console.log(Object.keys(formData).length > 0, "<---------");
+    let result = [];
     if (Object.keys(formData).length > 0 && postDetail) {
       result = formData.tags.map((tag) => ({
         value: tag,
@@ -43,7 +43,7 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
       setSelected(formatPrevTags());
     };
     updateFormData();
-  }, [postDetail, formData]);
+  }, [postDetail]);
 
   useEffect(() => {
     const getData = () => {
@@ -68,9 +68,11 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
             src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
             alt=""
           />
+          {console.log(optionSelected)}
           <TagSelector
             optionSelected={optionSelected}
             setSelected={setSelected}
+            canAdd={optionSelected.length >= 3}
           />
           <form onSubmit={(event) => handleSubmit(event)} className="writeForm">
             <div className="writeFormGroup">

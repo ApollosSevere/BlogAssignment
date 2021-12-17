@@ -34,7 +34,17 @@ function Posts({ username, feed, getPosts }) {
     getData();
   }, []);
 
-  return <div className="posts">{posts}</div>;
+  return (
+    <>
+      {feed.length == 0 ? (
+        <div style={{ fontSize: "30px" }} className="posts">
+          Sorry, there are no Blogs associated with tag selected!
+        </div>
+      ) : (
+        <div className="posts">{posts}</div>
+      )}{" "}
+    </>
+  );
 }
 
 const mapState = (state) => {
