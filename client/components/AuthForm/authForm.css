@@ -51,7 +51,7 @@
 .loginRegisterButton {
   position: absolute;
   top: 60px;
-  right: 20px;
+  right: 12%;
   background-color: teal;
   cursor: pointer;
   padding: 10px;
@@ -115,7 +115,7 @@
 .registerLoginButton {
   position: absolute;
   top: 60px;
-  right: 20px;
+  right: 12%;
   background-color: lightcoral;
   cursor: pointer;
   padding: 10px;
