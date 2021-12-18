@@ -1,7 +1,7 @@
 const router = require("express").Router();
 module.exports = router;
 
-router.use("/posts", require("./posts"));
+router.use("/posts", require("./post"));
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");
