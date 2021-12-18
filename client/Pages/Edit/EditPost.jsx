@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+// Redux Functions
 import { editPost } from "../../store/post";
 import { fetchPost } from "../../store/post";
-import { useParams } from "react-router-dom";
+
+// Components
 import TagSelector from "../../components/utils/TagSelector.jsx";
 
 export const EditPost = ({ getPost, updatePost, postDetail }) => {
@@ -11,7 +15,6 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
   const { postId } = useParams();
 
   const formatPrevTags = () => {
-    // console.log(Object.keys(formData).length > 0, "<---------");
     let result = [];
     if (Object.keys(formData).length > 0 && postDetail) {
       result = formData.tags.map((tag) => ({
@@ -60,7 +63,6 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
 
   return (
     <div className="write">
-      {console.log(formData)}
       {formData && (
         <div>
           <img

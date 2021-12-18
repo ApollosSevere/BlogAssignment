@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
+import "./write.css";
 import { connect } from "react-redux";
-import { addPost } from "../../store/feed";
-import TagSelector from "../../components/utils/TagSelector.jsx";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-import "./write.css";
+// Redux Functions
+import { addPost } from "../../store/feed";
+
+// Components
+import TagSelector from "../../components/utils/TagSelector.jsx";
 
 export const Write = ({ user_Id, submitPost, username }) => {
-  const [optionSelected, setSelected] = useState([]);
-  const [formData, setFormData] = useState();
-  const [posted, setPosted] = useState(false);
   const [img] = useState(
     `https://picsum.photos/200/300?random=${Math.floor(
       Math.random() * (10000000 - 1) + 1
     )}`
   );
+  const [optionSelected, setSelected] = useState([]);
+  const [formData, setFormData] = useState();
+  const [posted, setPosted] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +40,6 @@ export const Write = ({ user_Id, submitPost, username }) => {
         <Redirect to="/home" />
       ) : (
         <div className="write">
-          {("img ?", console.log(img))}
           <img className="writeImg" src={img} alt="" />
           <TagSelector
             optionSelected={optionSelected}

@@ -1,31 +1,11 @@
+import "./navbar.css";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../store/auth";
 
-import "./navbar.css";
-
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    {/* <h1>Blog</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-        
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-    </nav>
-    <hr /> */}
-
     <div className="top">
       <div className="topLeft">
         <i className="topIcon fab fa-facebook-square"></i>
@@ -83,9 +63,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   </div>
 );
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,

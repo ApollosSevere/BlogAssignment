@@ -8,11 +8,12 @@ const initialState = {
   filteredPost: [],
 };
 
-// ACTION
+//  * ACTION TYPES
+
 const LOAD_FEED = "LOAD_FEED";
 const SET_FILTERED = "SET_FILTERED";
 
-// ACTION CREATORS
+// * ACTION CREATORS
 const _updateFeed = (posts) => {
   return {
     type: LOAD_FEED,
@@ -27,7 +28,7 @@ const _setFiltered = (posts) => {
   };
 };
 
-// THUNKS
+// * THUNKS
 export const fetchPosts = () => {
   return async (dispatch) => {
     try {

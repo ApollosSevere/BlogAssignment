@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import "./sidebar.css";
 import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
+
+// Redux Functions
 import { updateFilteredPost } from "../../store/feed";
 
 function Sidebar({ feed, setFilteredPost }) {
-  const [category, setCategory] = useState("");
-
   const filterPost = (cat) => {
     return cat == "All" ? feed : feed.filter((post) => post.tags.includes(cat));
   };
+  const [category, setCategory] = useState("");
 
   const handleClick = (cat) => {
     setCategory(cat);
@@ -37,14 +37,14 @@ function Sidebar({ feed, setFilteredPost }) {
           alt=""
         />
         <p>
-          Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit
-          amet ex esse.Sunt eu ut nostrud id quis proident.
+          A blog with useful content shows your audience and customers that you
+          are a trusted source. Writing posts about topics they will find
+          interesting shows that you care about spreading useful information in
+          your industry.
         </p>
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
-
-        {/* <UI setCategory={setCategory} state={state} /> */}
 
         <ul className="sidebarList">
           <li className="sidebarListItem">

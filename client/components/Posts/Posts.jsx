@@ -1,13 +1,9 @@
+import "./posts.css";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import "./posts.css";
-
-import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 
 // Components
 import Feed from "../../components/Feed/Feed.jsx";
-import Header from "../../components/Header/Header.jsx";
 
 // Redux Functions
 import { fetchPosts } from "../../store/feed.js";
@@ -42,7 +38,7 @@ function Posts({ username, feed, getPosts }) {
         </div>
       ) : (
         <div className="posts">{posts}</div>
-      )}{" "}
+      )}
     </>
   );
 }

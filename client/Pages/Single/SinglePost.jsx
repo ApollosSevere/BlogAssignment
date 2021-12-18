@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { fetchPost } from "../../store/post";
 import "./singlePost.css";
+import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
+// Redux Functions
+import { fetchPost } from "../../store/post";
 import { deletePost } from "../../store/feed";
 
 export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
@@ -44,7 +45,6 @@ export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
                 <p className="link">{tag}</p>
               </span>
             ))}
-          {console.log(postInfo)}
         </div>
         <h1 className="singlePostTitle">
           {postInfo.title}

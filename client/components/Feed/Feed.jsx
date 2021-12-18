@@ -1,24 +1,39 @@
+import "./feed.css";
 import React from "react";
 import { Link } from "react-router-dom";
-import "./feed.css";
 
 function Feed({ info }) {
   const { title, body, author_name, createdAt, img, tags } = info;
   const date = new Date(createdAt).toLocaleDateString("en-US");
-
   const time = new Date(createdAt).toLocaleTimeString("en-US");
 
   return (
     <div className="post">
-      <span
-        style={{ fontSize: "15px", marginBottom: "10px" }}
-        className="postDate"
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+        }}
+        className="heading"
       >
-        {date}{" "}
-        <span style={{ fontSize: "12px" }} className="postDate">
-          {time}
+        <span
+          style={{ fontSize: "15px", marginBottom: "10px" }}
+          className="postDate"
+        >
+          {date}{" "}
+          <span style={{ fontSize: "12px" }} className="postDate">
+            {time}
+          </span>
         </span>
-      </span>
+
+        <div
+          style={{ fontWeight: "bold", fontSize: "17px" }}
+          className="author"
+        >
+          @{author_name}
+        </div>
+      </div>
 
       <Link to={`/singlepost/${info.id}`} className="link">
         <img className="postImg" src={img} />

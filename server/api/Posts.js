@@ -1,7 +1,8 @@
-const router = require("express").Router();
 const {
   models: { Post },
 } = require("../db");
+
+const router = require("express").Router();
 
 const { requireToken } = require("./middleware");
 

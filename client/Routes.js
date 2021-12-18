@@ -1,12 +1,18 @@
-import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import React, { useEffect } from "react";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm/AuthForm";
-import Home from "./Pages/Home/Home";
+
+// Redux Functions
 import { me } from "./store/auth";
+
+// Pages
+import Home from "./Pages/Home/Home";
 import Write from "./Pages/Write/Write.jsx";
-import SinglePost from "./Pages/Single/SinglePost.jsx";
 import EditPost from "./Pages/Edit/EditPost.jsx";
+import SinglePost from "./Pages/Single/SinglePost.jsx";
+
+// Components
+import { Login, Signup } from "./components/AuthForm/AuthForm";
 
 function Routes({ loadInitialData, isLoggedIn }) {
   useEffect(() => {
@@ -55,6 +61,6 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
+/* The `withRouter` wrapper makes sure that updates are not blocked
+when the url changes */
 export default withRouter(connect(mapState, mapDispatch)(Routes));

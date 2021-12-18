@@ -25,9 +25,8 @@ const User = db.define("user", {
 
 module.exports = User;
 
-/**
- * instanceMethods
- */
+//  * instanceMethods
+
 User.prototype.correctPassword = function (candidatePwd) {
   //compare the plain version to an encrypted version of the password
   return bcrypt.compare(candidatePwd, this.password);
@@ -37,9 +36,8 @@ User.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, process.env.JWT);
 };
 
-/**
- * classMethods
- */
+//  * classMethods
+
 User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({ where: { username } });
   if (!user || !(await user.correctPassword(password))) {
@@ -65,9 +63,8 @@ User.findByToken = async function (token) {
   }
 };
 
-/**
- * hooks
- */
+//  * hooks
+
 const hashPassword = async (user) => {
   //in case the password has been changed, we want to encrypt it with bcrypt
   if (user.changed("password")) {

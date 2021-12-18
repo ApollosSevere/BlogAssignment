@@ -3,8 +3,10 @@ import axios from "axios";
 const TOKEN = "token";
 const token = window.localStorage.getItem(TOKEN);
 
+//  * ACTION TYPES
 const GET_POST = "GET_POST";
 
+//  * ACTION CREATORS
 const _fetchPost = (post) => {
   return {
     type: GET_POST,
@@ -12,7 +14,7 @@ const _fetchPost = (post) => {
   };
 };
 
-// Get
+//  * THUNK CREATORS
 export const fetchPost = (postId) => {
   return async (dispatch) => {
     try {
@@ -28,7 +30,6 @@ export const fetchPost = (postId) => {
   };
 };
 
-// Update
 export const editPost = (postId, postObj, tags) => {
   return async (dispatch) => {
     try {
@@ -47,6 +48,7 @@ export const editPost = (postId, postObj, tags) => {
   };
 };
 
+//  * REDUCER
 export default function postReducer(state = {}, action) {
   switch (action.type) {
     case GET_POST:

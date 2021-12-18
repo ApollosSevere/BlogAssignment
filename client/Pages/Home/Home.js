@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import "./home.css";
-import Posts from "../../components/Posts/Posts.jsx";
-
-import Sidebar from "../../components/Sidebar/Sidebar.jsx";
+import { connect } from "react-redux";
+import React, { useEffect } from "react";
 
 // Components
-import Feed from "../../components/Feed/Feed.jsx";
+import Posts from "../../components/Posts/Posts.jsx";
 import Header from "../../components/Header/Header.jsx";
+import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 
 // Redux Functions
 import { fetchPosts } from "../../store/feed.js";
 
-function Home({ username, feed, getPosts }) {
-  // const posts = feed.map((post) => <Feed key={post.id} info={post} />);
-
-  // Make sure info is populated
+function Home({ getPosts }) {
   useEffect(() => {
     const getData = () => {
       try {
@@ -33,7 +27,6 @@ function Home({ username, feed, getPosts }) {
       <Header />
       <div className="home">
         <Sidebar />
-        {/* <div className="posts">{posts}</div> */}
         <Posts />
       </div>
     </>
