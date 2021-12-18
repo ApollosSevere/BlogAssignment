@@ -42,7 +42,7 @@ export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
                 style={{ fontSize: "20px", fontWeight: "bold" }}
                 className="postCat"
               >
-                <p className="link">{tag}</p>
+                <p className="link">#{tag}</p>
               </span>
             ))}
         </div>

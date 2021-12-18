@@ -43,7 +43,7 @@ function Feed({ info }) {
         <div style={{ display: "flex" }} className="postCats">
           {tags.map((tag) => (
             <span style={{ fontSize: "14px" }} className="postCat">
-              <p className="link">{tag}</p>
+              <p className="link">#{tag}</p>
             </span>
           ))}
         </div>
