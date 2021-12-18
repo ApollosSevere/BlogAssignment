@@ -34,6 +34,18 @@ export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
     <div className="singlePost">
       <div className="singlePostWrapper">
         <img className="singlePostImg" src={postInfo.img} alt="" />
+        <div style={{ display: "flex" }} className="postCats">
+          {Object.keys(postInfo).length > 0 &&
+            postInfo.tags.map((tag) => (
+              <span
+                style={{ fontSize: "20px", fontWeight: "bold" }}
+                className="postCat"
+              >
+                <p className="link">{tag}</p>
+              </span>
+            ))}
+          {console.log(postInfo)}
+        </div>
         <h1 className="singlePostTitle">
           {postInfo.title}
           <div className="singlePostEdit">
