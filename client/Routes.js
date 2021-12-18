@@ -17,7 +17,6 @@ import { Login, Signup } from "./components/AuthForm/AuthForm";
 function Routes({ loadInitialData, isLoggedIn }) {
   useEffect(() => {
     try {
-      console.log("on me!!");
       loadInitialData();
     } catch (error) {
       console.log(error);

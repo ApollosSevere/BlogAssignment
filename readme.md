@@ -2,6 +2,8 @@
 
 My solution to creating a Blog with two main resources: Post and Tags
 
+Deployed Link: https://blogassingment-apollo.herokuapp.com/
+
 ## Assumptions
 
 1. The company would like users to hold separate accounts for posting Blogs
