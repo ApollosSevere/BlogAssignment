@@ -4,8 +4,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../store/auth";
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
+const Navbar = ({ handleClick, isLoggedIn, username }) => (
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+    }}
+  >
     <div className="top">
       <div className="topLeft">
         <i className="topIcon fab fa-facebook-square"></i>
@@ -38,13 +43,18 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
       <div className="topRight">
         {isLoggedIn ? (
-          <Link className="link" to="/settings">
-            <img
-              className="topImg"
-              src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg"
-              alt=""
-            />
-          </Link>
+          <>
+            <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+              <p>{username}</p>
+              <Link className="link" to="/settings">
+                <img
+                  className="topImg"
+                  src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg"
+                  alt=""
+                />
+              </Link>
+            </div>
+          </>
         ) : (
           <ul className="topList">
             <li className="topListItem">
@@ -66,6 +76,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
+    username: state.auth.username,
   };
 };
 
