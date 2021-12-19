@@ -64,18 +64,21 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
   return (
     <div className="write">
       {formData && (
-        <div>
+        <>
           <img
             className="writeImg"
             src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
             alt=""
           />
 
-          <TagSelector
-            optionSelected={optionSelected}
-            setSelected={setSelected}
-            canAdd={optionSelected.length >= 3}
-          />
+          <div style={{ width: "100%" }} className="t-select">
+            <TagSelector
+              optionSelected={optionSelected}
+              setSelected={setSelected}
+              canAdd={optionSelected.length >= 3}
+            />
+          </div>
+
           <form onSubmit={(event) => handleSubmit(event)} className="writeForm">
             <div className="writeFormGroup">
               <input
@@ -102,7 +105,7 @@ export const EditPost = ({ getPost, updatePost, postDetail }) => {
               Publish
             </button>
           </form>
-        </div>
+        </>
       )}
     </div>
   );

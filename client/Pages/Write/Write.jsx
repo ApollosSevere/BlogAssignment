@@ -41,11 +41,14 @@ export const Write = ({ user_Id, submitPost, username }) => {
       ) : (
         <div className="write">
           <img className="writeImg" src={img} alt="" />
-          <TagSelector
-            optionSelected={optionSelected}
-            setSelected={setSelected}
-            canAdd={optionSelected.length >= 3}
-          />
+          <div style={{ width: "100%" }} className="t-select">
+            <TagSelector
+              optionSelected={optionSelected}
+              setSelected={setSelected}
+              canAdd={optionSelected.length >= 3}
+            />
+          </div>
+
           <form onSubmit={(event) => handleSubmit(event)} className="writeForm">
             <div className="writeFormGroup">
               <input
