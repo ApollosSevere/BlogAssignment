@@ -19,10 +19,12 @@ Steps I executed for implementing main functionality:
    - On the frontend level, the `allPost` variable is sorted then displayed
 
 2. To filter through Tagged Post:
+
    - On the frontend, the `allPosts` global variable is filtered through a built in sort method. All filtered posts must include a Tag that a user wants to filter through. The result of this is placed in the `filteredPost` global variable.
      The frontend only uses the `filteredPost` variable to display appropriate posts
-   2. call both utility functions, passing in 200 rows of tax forms a time
+
 3. Tags :
+
    - The `Post` table inside the PostgreSQL database has a flied named `tags` that holds an array of tags that can be associated with the post. This array flied is restricted to having only 3 values.
 
 ## Libraries/Tools used
@@ -84,6 +86,8 @@ Sync and seed your database by running `npm run seed`. Running `npm run start:de
 - start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
 
 ## Running Tests
+
+- On the main project directory type: `npm run test`
 
 ![Code Coverage](https://user-images.githubusercontent.com/55603364/146621421-feca58fa-6256-4a5d-8cc3-c8f4abe6f875.jpeg)
 
