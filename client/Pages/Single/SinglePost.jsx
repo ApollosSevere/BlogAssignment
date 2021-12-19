@@ -40,7 +40,7 @@ export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
             postInfo.tags.map((tag) => (
               <span
                 key={tag}
-                style={{ fontSize: "20px", fontWeight: "bold" }}
+                style={{ fontSize: "15px", fontWeight: "bold" }}
                 className="postCat"
               >
                 <p className="link">#{tag}</p>
