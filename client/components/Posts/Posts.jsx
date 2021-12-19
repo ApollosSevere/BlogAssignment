@@ -8,7 +8,7 @@ import Feed from "../../components/Feed/Feed.jsx";
 // Redux Functions
 import { fetchPosts } from "../../store/feed.js";
 
-function Posts({ feed, getPosts }) {
+function Posts({ feed, getPosts, username }) {
   const posts = feed.map((post) => <Feed key={post.id} info={post} />);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Posts({ feed, getPosts }) {
       }
     };
     getData();
-  }, []);
+  }, [username]);
 
   return (
     <>

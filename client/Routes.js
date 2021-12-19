@@ -38,6 +38,7 @@ function Routes({ loadInitialData, isLoggedIn }) {
           <Route path="/" exact component={Login} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Redirect to="/" component={Login} />
         </Switch>
       )}
     </div>
