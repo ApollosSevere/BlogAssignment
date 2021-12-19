@@ -39,6 +39,7 @@ export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
           {Object.keys(postInfo).length > 0 &&
             postInfo.tags.map((tag) => (
               <span
+                key={tag}
                 style={{ fontSize: "20px", fontWeight: "bold" }}
                 className="postCat"
               >
@@ -72,7 +73,7 @@ export const SinglePost = ({ getPost, userId, postInfo, removePost }) => {
             </b>
           </span>
           <span>
-            {JSON.stringify(new Date(postInfo.createdAt).toLocaleDateString())}
+            {new Date(postInfo.createdAt).toLocaleDateString("en-US")}
           </span>
         </div>
         <p className="singlePostDesc">{postInfo.body}</p>
