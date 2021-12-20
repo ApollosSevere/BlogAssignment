@@ -25,9 +25,6 @@ function LoginForm({ name, handleSubmit, error }) {
           />
           <button className="loginButton">Login</button>
         </form>
-        <button type="submit" className="loginRegisterButton">
-          Register
-        </button>
         {error && error.response && <div> {error.response.data} </div>}
       </div>
     </>
@@ -59,7 +56,6 @@ function SignupForm({ name, displayName, handleSubmit, error }) {
             Register
           </button>
         </form>
-        <button className="registerLoginButton">Login</button>
         {error && error.response && <div> {error.response.data} </div>}
       </div>
     </>

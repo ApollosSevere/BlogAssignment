@@ -48,18 +48,6 @@
   text-align: center;
 }
 
-.loginRegisterButton {
-  position: absolute;
-  top: 60px;
-  right: 12%;
-  background-color: teal;
-  cursor: pointer;
-  padding: 10px;
-  border: none;
-  color: white;
-  border-radius: 10px;
-}
-
 /* ----------------------- */
 
 .register {
@@ -110,16 +98,4 @@
   border: none;
   border-radius: 10px;
   text-align: center;
-}
-
-.registerLoginButton {
-  position: absolute;
-  top: 60px;
-  right: 12%;
-  background-color: lightcoral;
-  cursor: pointer;
-  padding: 10px;
-  border: none;
-  color: white;
-  border-radius: 10px;
 }
