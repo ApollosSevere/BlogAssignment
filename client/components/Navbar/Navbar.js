@@ -58,7 +58,9 @@ const Navbar = ({ handleClick, isLoggedIn, username }) => (
         ) : (
           <ul className="topList">
             <li className="topListItem">
-              <Link to="/login">LOGIN</Link>
+              <Link className="link" to="/login">
+                LOGIN
+              </Link>
             </li>
             <li className="topListItem">
               <Link className="link" to="/signup">

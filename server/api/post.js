@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 const { requireToken } = require("./middleware");
 
-router.get("/", requireToken, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const posts = await Post.findAll({ order: [["updatedAt", "DESC"]] });
     res.status(200).json(posts);

@@ -35,10 +35,10 @@ function Routes({ loadInitialData, isLoggedIn }) {
         </Switch>
       ) : (
         <Switch>
-          <Route path="/" exact component={Login} />
+          <Route path="/" exact component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Redirect to="/" component={Login} />
+          <Redirect to="/" component={Signup} />
         </Switch>
       )}
     </div>

@@ -54,7 +54,9 @@ function Feed({ info }) {
         </span>
         <hr />
       </div>
-      <p className="postDesc">{body}</p>
+      <p style={{ padding: "0 5px" }} className="postDesc">
+        {body}
+      </p>
     </div>
   );
 }
